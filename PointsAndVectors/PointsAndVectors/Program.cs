@@ -141,6 +141,7 @@ namespace PointsAndVectors
                     $"\nRightHand Vector: {Right.x}, {Right.y}, {Right.z}");
                 Vector3 EnemyToPlayer = Vec3 - Vec2;
                 float IsRight = Right.Dot(EnemyToPlayer);
+                float IsInFront = Forward.AngleBetween(EnemyToPlayer);
                 if(IsRight >= 0)
                 {
                     Console.WriteLine("\nYou are to the right of the enemy");
@@ -149,6 +150,15 @@ namespace PointsAndVectors
                 {
                     Console.WriteLine("\nYou are not to the right of the enemy");
                 }
+                if(IsInFront <= 90 && IsInFront >= -90)
+                {
+                    Console.WriteLine("\nYou are in front of the enemy");
+                }
+                else
+                {
+                    Console.WriteLine("\nYou are not in front of the enemy");
+                }
+
 
                 //Magnitude&Distance
 
@@ -176,7 +186,7 @@ namespace PointsAndVectors
             // Question 4
             // 
             // You are to the right of the enemy
-            // 
+            // You are within a 90 degree field-of-view from the Enemy A.I.
             //
             #endregion
         }
