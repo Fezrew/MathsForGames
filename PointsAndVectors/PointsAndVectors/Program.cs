@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PointsAndVectors
+namespace MathUtility
 {
     class Program
     {
@@ -16,19 +16,19 @@ namespace PointsAndVectors
 
             Vector2 GetPerpendicularRH()
             {
-                return new Vector2( -y, x );
+                return new Vector2(-y, x);
             }
 
             Vector2 GetPerpendicularLH()
             {
-                return new Vector2( y, -x );
+                return new Vector2(y, -x);
             }
         }
 
         class Vector3
         {
             public float x, y, z;
-            
+
             public Vector3(float x, float y, float z)
             {
                 this.x = x;
@@ -135,40 +135,40 @@ namespace PointsAndVectors
                 Vector3 Vec3 = new Vector3(10, 0, 18);
                 Vector3 Upward = new Vector3(0, 1, 0);
 
-                Vector3 Forward = Vec1 - Vec2;
-                Vector3 Right = Forward.Cross(Upward);
-                Console.WriteLine($"Forward Vector: {Forward.x}, {Forward.y}, {Forward.z}" +
-                    $"\nRightHand Vector: {Right.x}, {Right.y}, {Right.z}");
-                Vector3 EnemyToPlayer = Vec3 - Vec2;
-                float IsRight = Right.Dot(EnemyToPlayer);
-                float IsInFront = Forward.AngleBetween(EnemyToPlayer);
-                if(IsRight >= 0)
-                {
-                    Console.WriteLine("\nYou are to the right of the enemy");
-                }
-                else
-                {
-                    Console.WriteLine("\nYou are not to the right of the enemy");
-                }
-                if(IsInFront <= 90 && IsInFront >= -90)
-                {
-                    Console.WriteLine("\nYou are in front of the enemy");
-                }
-                else
-                {
-                    Console.WriteLine("\nYou are not in front of the enemy");
-                }
+                //Dot&Cross
+                //Vector3 Forward = Vec1 - Vec2;
+                //Vector3 Right = Forward.Cross(Upward);
+                //Console.WriteLine($"Forward Vector: {Forward.x}, {Forward.y}, {Forward.z}" +
+                //    $"\nRightHand Vector: {Right.x}, {Right.y}, {Right.z}");
+                //Vector3 EnemyToPlayer = Vec3 - Vec2;
+                //float IsRight = Right.Dot(EnemyToPlayer);
+                //float IsInFront = Forward.AngleBetween(EnemyToPlayer);
+                //if(IsRight >= 0)
+                //{
+                //    Console.WriteLine("\nYou are to the right of the enemy");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("\nYou are not to the right of the enemy");
+                //}
+                //if(IsInFront <= 90 && IsInFront >= -90)
+                //{
+                //    Console.WriteLine("\nYou are in front of the enemy");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("\nYou are not in front of the enemy");
+                //}
 
 
                 //Magnitude&Distance
-
                 //float mag = Vec1.Magnitude();
                 //float dist = Vec1.Distance(Vec2);
                 //Console.WriteLine($"{dist}");
 
                 //Normalisation Code
-
                 //myVec /= mag;
+
                 Console.ReadKey();
             }
 
@@ -189,6 +189,46 @@ namespace PointsAndVectors
             // You are within a 90 degree field-of-view from the Enemy A.I.
             //
             #endregion
+        }
+
+        public class Matrix3
+        {
+            public float m1, m2, m3, m4, m5, m6, m7, m8, m9;
+            public Matrix3()
+            {
+                m1 = 1; m2 = 0; m3 = 0;
+                m4 = 0; m5 = 1; m6 = 0;
+                m7 = 0; m8 = 0; m9 = 1;
+
+            }
+
+            public Matrix3(float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9)
+            {
+                this.m1 = m1;
+                this.m2 = m2;
+                this.m3 = m3;
+                this.m4 = m4;
+                this.m5 = m5;
+                this.m6 = m6;
+                this.m7 = m7;
+                this.m8 = m8;
+                this.m9 = m9;
+            }
+
+            public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
+            {
+                return new Matrix3(
+                lhs.m1 * rhs.m1 + lhs.m4 * rhs.m2 + lhs.m7 * rhs.m3, lhs.m2 * rhs.m1 + lhs.m5 * rhs.m2 + lhs.m8 * rhs.m3, lhs.m3 * rhs.m1 + lhs.m6 * rhs.m2 + lhs.m9 * rhs.m3,
+                lhs.m1 * rhs.m4 + lhs.m4 * rhs.m5 + lhs.m7 * rhs.m6, lhs.m2 * rhs.m4 + lhs.m5 * rhs.m5 + lhs.m8 * rhs.m6, lhs.m3 * rhs.m4 + lhs.m6 * rhs.m5 + lhs.m9 * rhs.m6,
+                lhs.m1 * rhs.m7 + lhs.m4 * rhs.m8 + lhs.m7 * rhs.m9, lhs.m2 * rhs.m7 + lhs.m5 * rhs.m8 + lhs.m8 * rhs.m9, lhs.m3 * rhs.m7 + lhs.m6 * rhs.m8 + lhs.m9 * rhs.m9);
+            }
+        }
+
+        public class Matrix4
+        {
+            public Matrix4()
+            {
+            }
         }
     }
 }
