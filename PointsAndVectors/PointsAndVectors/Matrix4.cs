@@ -18,22 +18,10 @@ namespace MathUtility
 
         public Matrix4(float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9, float m10, float m11, float m12, float m13, float m14, float m15, float m16)
         {
-            this.m1 = m1;
-            this.m2 = m2;
-            this.m3 = m3;
-            this.m4 = m4;
-            this.m5 = m5;
-            this.m6 = m6;
-            this.m7 = m7;
-            this.m8 = m8;
-            this.m9 = m9;
-            this.m10 = m10;
-            this.m11 = m11;
-            this.m12 = m12;
-            this.m13 = m13;
-            this.m14 = m14;
-            this.m15 = m15;
-            this.m16 = m16;
+            this.m1 = m1; this.m2 = m2; this.m3 = m3; this.m4 = m4;
+            this.m5 = m5; this.m6 = m6; this.m7 = m7; this.m8 = m8;
+            this.m9 = m9; this.m10 = m10; this.m11 = m11; this.m12 = m12;
+            this.m13 = m13; this.m14 = m14; this.m15 = m15; this.m16 = m16;
         }
 
         #region Operators
@@ -77,5 +65,122 @@ namespace MathUtility
            m4, m8, m12, m16
            );
         }
+
+        #region Set
+        public void Set(Matrix4 m)
+        {
+            m1 = m.m1; m2 = m.m2; m3 = m.m3; m4 = m.m4; 
+            m5 = m.m5; m6 = m.m6; m7 = m.m7; m8 = m.m8; 
+            m9 = m.m9; m10 = m.m10; m11 = m.m11; m12 = m.m12;
+            m13 = m.m13; m14 = m.m14; m15 = m.m15; m16 = m.m16;
+        }
+        public void Set(float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9, float m10, float m11, float m12, float m13, float m14, float m15, float m16)
+        {
+            this.m1 = m1; this.m2 = m2; this.m3 = m3; this.m4 = m4;
+            this.m5 = m5; this.m6 = m6; this.m7 = m7; this.m8 = m8;
+            this.m9 = m9; this.m10 = m10; this.m11 = m11; this.m12 = m12;
+            this.m13 = m13; this.m14 = m14; this.m15 = m15; this.m16 = m16;
+        }
+        #endregion
+
+        #region Scale
+        public void SetScaled(float x, float y, float z)
+        {
+            m1 = x; m2 = 0; m3 = 0; m4 = 0;
+            m5 = 0; m6 = y; m7 = 0; m8 = 0;
+            m9 = 0; m10 = 0; m11 = z; m12 = 0;
+            m13 = 0; m14 = 0; m15 = 0; m16 = 1;
+        }
+        public void SetScaled(Vector3 v)
+        {
+            m1 = v.x; m2 = 0; m3 = 0; m4 = 0;
+            m5 = 0; m6 = v.y; m7 = 0; m8 = 0;
+            m9 = 0; m10 = 0; m11 = v.z; m12 = 0;
+            m13 = 0; m14 = 0; m15 = 0; m16 = 1;
+        }
+        void Scale(float x, float y, float z)
+        {
+            Matrix4 m = new Matrix4();
+            m.SetScaled(x, y, z);
+            Set(this * m);
+        }
+        void Scale(Vector3 v)
+        {
+            Matrix4 m = new Matrix4();
+            m.SetScaled(v.x, v.y, v.z);
+            Set(this * m);
+        }
+        #endregion
+
+        #region Rotation
+        public void SetRotateX(float radians)
+        {
+            Set(1, 0, 0, 0,
+                0, (float)Math.Cos(radians), (float)-Math.Sin(radians), 0,
+                0, (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+                0, 0, 0, 1
+                );
+        }
+        public void SetRotateY(float radians)
+        {
+            Set((float)Math.Cos(radians), 0, (float)-Math.Sin(radians), 0,
+                0, 1, 0, 0,
+                (float)Math.Sin(radians), 0, (float)Math.Cos(radians), 0,
+                0, 0, 0, 1
+                );
+        }
+        public void SetRotateZ(float radians)
+        {
+            Set((float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
+                (float)-Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                0, 0, 1, 0,
+                0, 0, 0, 1
+                );
+        }
+
+        public void RotateX(float radians)
+        {
+            Matrix4 m = new Matrix4();
+            m.SetRotateX(radians);
+            Set(this * m);
+        }
+        public void RotateY(float radians)
+        {
+            Matrix4 m = new Matrix4();
+            m.SetRotateY(radians);
+            Set(this * m);
+        }
+        public void RotateZ(float radians)
+        {
+            Matrix4 m = new Matrix4();
+            m.SetRotateZ(radians);
+            Set(this * m);
+        }
+        void SetEuler(float pitch, float yaw, float roll)
+        {
+            Matrix4 x = new Matrix4();
+            Matrix4 y = new Matrix4();
+            Matrix4 z = new Matrix4();
+            x.SetRotateX(pitch);
+            y.SetRotateY(yaw);
+            z.SetRotateZ(roll);
+
+            // combine rotations in a specific order
+            Set(z * y * x);
+        }
+        #endregion
+
+        #region Translation
+        public void SetTranslation(float x, float y, float z)
+        {
+            m13 = z; m14 = y; m15 = z; m16 = 1;
+        }
+
+        void Translate(float x, float y, float z)
+        {
+            // apply vector offset
+            m13 += z; m14 += y; m15 += z;
+        }
+        #endregion
     }
 }
