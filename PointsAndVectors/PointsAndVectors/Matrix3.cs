@@ -94,13 +94,13 @@ namespace MathUtility
             m4 = 0; m5 = v.y; m6 = 0;
             m7 = 0; m8 = 0; m9 = v.z;
         }
-        void Scale(float x, float y, float z)
+        public void Scale(float x, float y, float z)
         {
             Matrix3 m = new Matrix3();
             m.SetScaled(x, y, z);
             Set(this * m);
         }
-        void Scale(Vector3 v)
+        public void Scale(Vector3 v)
         {
             Matrix3 m = new Matrix3();
             m.SetScaled(v.x, v.y, v.z);
@@ -160,6 +160,19 @@ namespace MathUtility
 
             // combine rotations in a specific order
             Set(z * y * x);
+        }
+        #endregion
+
+        #region Translation
+        public void SetTranslation(float x, float y)
+        {
+            m7 = x; m8 = y; m9 = 1;
+        }
+
+        public void Translate(float x, float y)
+        {
+            // apply vector offset
+            m7 += x; m8 += y;;
         }
         #endregion
     }
