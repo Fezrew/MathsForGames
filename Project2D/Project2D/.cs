@@ -116,7 +116,7 @@ namespace Project2D
             }
         }
 
-        
+
 
         public virtual void OnUpdate(float deltaTime)
         {
