@@ -115,7 +115,7 @@ namespace MathUtility
                 so.parent = null;
             }
         }
-
+        
         
 
         public virtual void OnUpdate(float deltaTime)
