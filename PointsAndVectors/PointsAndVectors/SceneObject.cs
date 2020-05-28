@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace MathUtility
 {
-    class SceneObject
+    public class SceneObject
     {
         protected SceneObject parent = null;
         protected List<SceneObject> children = new List<SceneObject>();
