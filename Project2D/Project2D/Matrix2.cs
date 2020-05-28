@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathUtility
+namespace Project2D
 {
     public class Matrix2
     {
@@ -59,5 +59,4 @@ namespace MathUtility
            m2, m4);
         }
     }
-
 }

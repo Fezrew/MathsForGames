@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathUtility
+namespace Project2D
 {
     public class Vector4
     {
@@ -130,5 +130,4 @@ namespace MathUtility
 
         #endregion
     }
-
 }

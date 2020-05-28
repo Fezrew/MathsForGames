@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathUtility
+namespace Project2D
 {
     class Program
     {

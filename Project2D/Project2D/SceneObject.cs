@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
 
-namespace MathUtility
+namespace Project2D
 {
     class SceneObject
     {
@@ -116,7 +116,7 @@ namespace MathUtility
             }
         }
 
-        
+
 
         public virtual void OnUpdate(float deltaTime)
         {
