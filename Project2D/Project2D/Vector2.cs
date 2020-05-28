@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project2D
+namespace MathUtility
 {
     public class Vector2
     {
@@ -69,7 +69,7 @@ namespace Project2D
             return new Vector2(lhs.x / rhs, lhs.y / rhs);
         }
         #endregion
-
+        
         #region Magnitude
         public float Magnitude()
         {
@@ -124,4 +124,6 @@ namespace Project2D
 
         #endregion
     }
+
+
 }

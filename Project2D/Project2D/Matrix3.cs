@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project2D
+namespace MathUtility
 {
     public class Matrix3
     {
@@ -104,7 +104,7 @@ namespace Project2D
         {
             Matrix3 m = new Matrix3();
             m.SetScaled(v.x, v.y, v.z);
-            Set(this * m);
+            Set( this * m);
         }
         #endregion
 
@@ -172,7 +172,7 @@ namespace Project2D
         public void Translate(float x, float y)
         {
             // apply vector offset
-            m7 += x; m8 += y; ;
+            m7 += x; m8 += y;;
         }
         #endregion
     }

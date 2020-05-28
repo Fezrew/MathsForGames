@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project2D
+namespace MathUtility
 {
     public class Matrix4
     {
@@ -69,8 +69,8 @@ namespace Project2D
         #region Set
         public void Set(Matrix4 m)
         {
-            m1 = m.m1; m2 = m.m2; m3 = m.m3; m4 = m.m4;
-            m5 = m.m5; m6 = m.m6; m7 = m.m7; m8 = m.m8;
+            m1 = m.m1; m2 = m.m2; m3 = m.m3; m4 = m.m4; 
+            m5 = m.m5; m6 = m.m6; m7 = m.m7; m8 = m.m8; 
             m9 = m.m9; m10 = m.m10; m11 = m.m11; m12 = m.m12;
             m13 = m.m13; m14 = m.m14; m15 = m.m15; m16 = m.m16;
         }

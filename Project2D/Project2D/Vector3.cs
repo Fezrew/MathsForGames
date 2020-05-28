@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project2D
+namespace MathUtility
 {
     public class Vector3
     {
