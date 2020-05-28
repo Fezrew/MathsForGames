@@ -69,7 +69,7 @@ namespace MathUtility
             return new Vector2(lhs.x / rhs, lhs.y / rhs);
         }
         #endregion
-
+        
         #region Magnitude
         public float Magnitude()
         {
