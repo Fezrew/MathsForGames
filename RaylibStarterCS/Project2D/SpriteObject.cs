@@ -27,5 +27,16 @@ namespace MathUtility
             Image img = LoadImage(filename);
             texture = LoadTextureFromImage(img);
         }
+
+        public override void OnDraw()
+        {
+            float rotation = (float)Math.Atan2(
+           globalTransform.m2, globalTransform.m1);
+            Raylib.Raylib.DrawTextureEx(
+            texture,
+            new Raylib.Vector2(globalTransform.m7, globalTransform.m8),
+            rotation * (float)(180.0f / Math.PI),
+            1, Color.WHITE);
+        }
     }
 }
