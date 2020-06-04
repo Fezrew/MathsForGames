@@ -5,7 +5,7 @@ using Raylib;
 using static Raylib.Raylib;
 
 
-namespace MathUtility
+namespace Project2D
 {
     public class SpriteObject : SceneObject
     {
@@ -24,15 +24,15 @@ namespace MathUtility
         }
         public void Load(string filename)
         {
-            Image img = LoadImage(filename);
-            texture = LoadTextureFromImage(img);
+            image = LoadImage(filename);
+            texture = LoadTextureFromImage(image);
         }
 
         public override void OnDraw()
         {
             float rotation = (float)Math.Atan2(
-           globalTransform.m2, globalTransform.m1);
-            Raylib.Raylib.DrawTextureEx(
+            globalTransform.m2, globalTransform.m1);
+            DrawTextureEx(
             texture,
             new Raylib.Vector2(globalTransform.m7, globalTransform.m8),
             rotation * (float)(180.0f / Math.PI),

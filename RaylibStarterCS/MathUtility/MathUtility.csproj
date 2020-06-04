@@ -4,36 +4,31 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C24AC51D-CF9D-439A-8303-99706B312D78}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Project2D</RootNamespace>
-    <AssemblyName>Project2D</AssemblyName>
+    <ProjectGuid>{52C269EA-1DE3-4BE3-B122-226F37C0A10C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathUtility</RootNamespace>
+    <AssemblyName>MathUtility</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,21 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Matrix2.cs" />
+    <Compile Include="Matrix3.cs" />
+    <Compile Include="Matrix4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SceneObject.cs" />
-    <Compile Include="SpriteObject.cs" />
+    <Compile Include="Vector2.cs" />
+    <Compile Include="Vector3.cs" />
+    <Compile Include="Vector4.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MathUtility\MathUtility.csproj">
-      <Project>{52c269ea-1de3-4be3-b122-226f37c0a10c}</Project>
-      <Name>MathUtility</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="..\Raylib\Bindings\Raylib.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

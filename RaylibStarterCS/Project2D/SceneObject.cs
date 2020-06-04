@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using MathUtility;
 
-namespace MathUtility
+namespace Project2D
 {
     public class SceneObject
     {
@@ -104,7 +105,7 @@ namespace MathUtility
         }
         #endregion
 
-        public SceneObject()
+        ~SceneObject()
         {
             if (parent != null)
             {
