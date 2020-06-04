@@ -8,7 +8,7 @@ namespace MathUtility
 {
     public class Colour
     {
-        public uint colour;
+        public UInt32 colour;
 
         public Colour()
         {
@@ -23,6 +23,7 @@ namespace MathUtility
         public byte GetRed()
         {
             throw new NotImplementedException();
+
         }
         public byte GetGreen()
         {
@@ -39,19 +40,23 @@ namespace MathUtility
 
         public void SetRed(byte r)
         {
-            throw new NotImplementedException();
+            colour = colour & 0x00ffffff;
+            colour |= (UInt32)r << 24;
         }
         public void SetGreen(byte g)
         {
-            throw new NotImplementedException();
+            colour = colour & 0xff00ffff;
+            colour |= (UInt32)g << 16;
         }
         public void SetBlue(byte b)
         {
-            throw new NotImplementedException();
+            colour = colour & 0xffff00ff;
+            colour |= (UInt32)b << 8;
         }
         public void SetAlpha(byte a)
         {
-            throw new NotImplementedException();
+            colour = colour & 0xffffff00;
+            colour |= (UInt32)a;
         }
     }
 }

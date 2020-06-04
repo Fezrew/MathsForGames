@@ -36,10 +36,15 @@ namespace MathUtility
         #region Operators
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
+
+            //return new Matrix3(
+            //rhs.m1 * lhs.m1 + rhs.m4 * lhs.m2 + rhs.m7 * lhs.m3, rhs.m2 * lhs.m1 + rhs.m5 * lhs.m2 + rhs.m8 * lhs.m3, rhs.m3 * lhs.m1 + rhs.m6 * lhs.m2 + rhs.m9 * lhs.m3,
+            //rhs.m1 * lhs.m4 + rhs.m4 * lhs.m5 + rhs.m7 * lhs.m6, rhs.m2 * lhs.m4 + rhs.m5 * lhs.m5 + rhs.m8 * lhs.m6, rhs.m3 * lhs.m4 + rhs.m6 * lhs.m5 + rhs.m9 * lhs.m6,
+            //rhs.m1 * lhs.m7 + rhs.m4 * lhs.m8 + rhs.m7 * lhs.m9, rhs.m2 * lhs.m7 + rhs.m5 * lhs.m8 + rhs.m8 * lhs.m9, rhs.m3 * lhs.m7 + rhs.m6 * lhs.m8 + rhs.m9 * lhs.m9);
             return new Matrix3(
-            rhs.m1 * lhs.m1 + rhs.m4 * lhs.m2 + rhs.m7 * lhs.m3, rhs.m2 * lhs.m1 + rhs.m5 * lhs.m2 + rhs.m8 * lhs.m3, rhs.m3 * lhs.m1 + rhs.m6 * lhs.m2 + rhs.m9 * lhs.m3,
-            rhs.m1 * lhs.m4 + rhs.m4 * lhs.m5 + rhs.m7 * lhs.m6, rhs.m2 * lhs.m4 + rhs.m5 * lhs.m5 + rhs.m8 * lhs.m6, rhs.m3 * lhs.m4 + rhs.m6 * lhs.m5 + rhs.m9 * lhs.m6,
-            rhs.m1 * lhs.m7 + rhs.m4 * lhs.m8 + rhs.m7 * lhs.m9, rhs.m2 * lhs.m7 + rhs.m5 * lhs.m8 + rhs.m8 * lhs.m9, rhs.m3 * lhs.m7 + rhs.m6 * lhs.m8 + rhs.m9 * lhs.m9);
+                lhs.GetRow(0).Dot(rhs.GetColumn(0)), lhs.GetRow(1).Dot(rhs.GetColumn(0)), lhs.GetRow(2).Dot(rhs.GetColumn(0)),
+                lhs.GetRow(0).Dot(rhs.GetColumn(1)), lhs.GetRow(1).Dot(rhs.GetColumn(1)), lhs.GetRow(2).Dot(rhs.GetColumn(1)),
+                lhs.GetRow(0).Dot(rhs.GetColumn(2)), lhs.GetRow(1).Dot(rhs.GetColumn(2)), lhs.GetRow(2).Dot(rhs.GetColumn(2)));
         }
 
         public static Matrix3 operator -(Matrix3 lhs, Matrix3 rhs)
@@ -112,8 +117,8 @@ namespace MathUtility
         public void SetRotateX(float radians)
         {
             Set(1, 0, 0,
-                0, (float)Math.Cos(radians), (float)-Math.Sin(radians),
-                0, (float)Math.Sin(radians), (float)Math.Cos(radians)
+                0, (float)Math.Cos(radians), (float)Math.Sin(radians),
+                0, (float)-Math.Sin(radians), (float)Math.Cos(radians)
                 );
         }
         public void SetRotateY(float radians)
@@ -173,6 +178,49 @@ namespace MathUtility
         {
             // apply vector offset
             m7 += x; m8 += y;;
+        }
+        #endregion
+
+        #region Columns and Rows
+        public Vector3 GetRow(int rowNum)
+        {
+            if (0 <= rowNum && rowNum < 3)
+            {
+                switch (rowNum)
+                {
+                    case 0:
+                        return new Vector3(m1, m4, m7);
+                    case 1:
+                        return new Vector3(m2, m5, m8);
+                    case 2:
+                        return new Vector3(m3, m6, m9);
+                }
+            } else
+            {
+                throw new IndexOutOfRangeException();
+            }
+            return new Vector3(0, 0, 0);
+        }
+
+        public Vector3 GetColumn(int colNum)
+        {
+            if (0 <= colNum && colNum < 3)
+            {
+                switch (colNum)
+                {
+                    case 0:
+                        return new Vector3(m1, m2, m3);
+                    case 1:
+                        return new Vector3(m4, m5, m6);
+                    case 2:
+                        return new Vector3(m7, m8, m9);
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException();
+            }
+            return new Vector3(0, 0, 0);
         }
         #endregion
     }
