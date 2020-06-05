@@ -83,6 +83,7 @@ namespace Project2D
 
             currentTime = stopwatch.ElapsedMilliseconds;
             deltaTime = (currentTime - lastTime) / 1000.0f;
+
             timer += deltaTime;
             if (timer >= 1)
             {
@@ -92,7 +93,31 @@ namespace Project2D
             }
             frames++;
 
-            // insert game logic here            
+            if (IsKeyDown(KeyboardKey.KEY_A))
+            {
+                tankObject.Rotate(-deltaTime * 10);
+            }
+            if (IsKeyDown(KeyboardKey.KEY_D))
+            {
+                tankObject.Rotate(deltaTime * 10);
+            }
+            if (IsKeyDown(KeyboardKey.KEY_W))
+            {
+               MathUtility.Vector3 facing = new MathUtility.Vector3(
+               tankObject.LocalTransform.m1,
+               tankObject.LocalTransform.m2, 1) * deltaTime * 200;
+               tankObject.Translate(facing.x, facing.y);
+            }
+            if (IsKeyDown(KeyboardKey.KEY_S))
+            {
+               MathUtility.Vector3 facing = new MathUtility.Vector3(
+               tankObject.LocalTransform.m1,
+               tankObject.LocalTransform.m2, 1) * deltaTime * -180;
+               tankObject.Translate(facing.x, facing.y);
+            }
+            tankObject.Update(deltaTime);
+
+            lastTime = currentTime;          
         }
 
         public void Draw()
