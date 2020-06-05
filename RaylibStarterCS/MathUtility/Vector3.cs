@@ -37,9 +37,9 @@ namespace MathUtility
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3(
-                (lhs.m1 * rhs.x) + (lhs.m2 * rhs.x) + (lhs.m3 * rhs.x),
-                (lhs.m4 * rhs.y) + (lhs.m5 * rhs.y) + (lhs.m6 * rhs.y),
-                (lhs.m7 * rhs.z) + (lhs.m8 * rhs.z) + (lhs.m9 * rhs.z)
+                (lhs.m1 * rhs.x) + (lhs.m4 * rhs.y) + (lhs.m7 * rhs.z),
+                (lhs.m2 * rhs.x) + (lhs.m5 * rhs.y) + (lhs.m8 * rhs.z),
+                (lhs.m3 * rhs.x) + (lhs.m6 * rhs.y) + (lhs.m9 * rhs.z)
                 );
         }
 

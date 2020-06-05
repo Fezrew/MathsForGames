@@ -17,25 +17,31 @@ namespace MathUtility
 
         public Colour(byte r, byte g, byte b, byte a)
         {
-
+            SetRed(r);
+            SetGreen(g);
+            SetBlue(b);
+            SetAlpha(a);
         }
 
         public byte GetRed()
         {
-            throw new NotImplementedException();
-
+            return (byte)((colour & 0xff000000) >> 24);
+            UInt32 value = colour & 0xff000000;
         }
         public byte GetGreen()
         {
-            throw new NotImplementedException();
+            return (byte)((colour & 0x00ff0000) >> 16);
+            UInt32 value = colour & 0x00ff0000;
         }
         public byte GetBlue()
         {
-            throw new NotImplementedException();
+            return (byte)((colour & 0x0000ff00) >> 8);
+            UInt32 value = colour & 0x0000ff00;
         }
         public byte GetAlpha()
         {
-            throw new NotImplementedException();
+            return (byte)((colour & 0x000000ff));
+            UInt32 value = colour & 0x000000ff;
         }
 
         public void SetRed(byte r)
