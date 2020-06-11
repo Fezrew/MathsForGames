@@ -1,4 +1,4 @@
-﻿#define aie
+﻿//#define aie
 
 using System;
 using System.Collections.Generic;
@@ -19,16 +19,14 @@ namespace Project2D
         private long currentTime = 0, lastTime = 0;
         private float timer = 0, deltaTime = 0.005f;
         private int fps = 1;
+        public int tanks = 1;
         private int frames;
-
 
         Image logo;
         Texture2D texture;
 
-        SceneObject tankObject = new SceneObject();
-        SceneObject turretObject = new SceneObject();
-        SpriteObject tankSprite = new SpriteObject();
-        SpriteObject turretSprite = new SpriteObject();
+        public List<SceneObject> SObject = new List<SceneObject>();
+        Tank tank;
 
         public Game()
         {
@@ -39,26 +37,9 @@ namespace Project2D
             stopwatch.Start();
             lastTime = stopwatch.ElapsedMilliseconds;
 
-            tankSprite.Load("./Images/tankBlue_outline.png");
-            // sprite is facing the wrong way... fix that here
-            tankSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
-            // sets an offset for the base, so it rotates around the centre
-            tankSprite.SetPosition(-tankSprite.Width / 2.0f, tankSprite.Height / 2.0f);
-            turretSprite.Load("./Images/barrelBlue.png");
-            turretSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
-            // set the turret offset from the tank base
-            turretSprite.SetPosition(0, turretSprite.Width / 2.0f);
+            tank = new Tank(this);
 
-            // set up the scene object hierarchy - parent the turret to the base,
-            // then the base to the tank sceneObject
-            turretObject.AddChild(turretSprite);
-            tankObject.AddChild(tankSprite);
-            tankObject.AddChild(turretObject);
-
-            // having an empty object for the tank parent means we can set the
-            // position/rotation of the tank without
-            // affecting the offset of the base sprite
-            tankObject.SetPosition(GetScreenWidth() / 2.0f, GetScreenHeight() / 2.0f);
+            SObject.Add(tank);
 
             if (Stopwatch.IsHighResolution)
             {
@@ -93,39 +74,27 @@ namespace Project2D
             }
             frames++;
 
-            if (IsKeyDown(KeyboardKey.KEY_A))
-            {
-                tankObject.Rotate(-deltaTime * 10);
-            }
-            if (IsKeyDown(KeyboardKey.KEY_D))
-            {
-                tankObject.Rotate(deltaTime * 10);
-            }
-            if (IsKeyDown(KeyboardKey.KEY_W))
-            {
-               MathUtility.Vector3 facing = new MathUtility.Vector3(
-               tankObject.LocalTransform.m1,
-               tankObject.LocalTransform.m2, 1) * deltaTime * 200;
-               tankObject.Translate(facing.x, facing.y);
-            }
-            if (IsKeyDown(KeyboardKey.KEY_S))
-            {
-               MathUtility.Vector3 facing = new MathUtility.Vector3(
-               tankObject.LocalTransform.m1,
-               tankObject.LocalTransform.m2, 1) * deltaTime * -180;
-               tankObject.Translate(facing.x, facing.y);
-            }
-            tankObject.Update(deltaTime);
+            lastTime = currentTime;
 
-            lastTime = currentTime;          
+            for (int i = 0; i < SObject.Count(); i++)
+            {
+                SObject[i].Update(deltaTime);
+            }
         }
 
         public void Draw()
         {
             BeginDrawing();
             ClearBackground(Color.WHITE);
-            DrawText(fps.ToString(), 10, 10, 12, Color.RED);
-            tankObject.Draw();
+
+            foreach (SceneObject so in SObject)
+            {
+                so.Draw();
+            }
+
+            DrawText(fps.ToString(), 10, 20, 32, Color.RED);
+            DrawText(tanks.ToString(), 200, 20, 32, Color.RED);
+
             EndDrawing();
         }
     }

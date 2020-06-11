@@ -9,8 +9,8 @@ namespace Project2D
 {
     public class SpriteObject : SceneObject
     {
-        Texture2D texture = new Texture2D();
-        Image image = new Image();
+        public Texture2D texture = new Texture2D();
+        public Image image = new Image();
         public float Width
         {
             get { return texture.width; }
@@ -25,7 +25,14 @@ namespace Project2D
         public void Load(string filename)
         {
             image = LoadImage(filename);
-            texture = LoadTextureFromImage(image);
+            if (image.width > 0 && image.height > 0)
+            {
+                texture = LoadTextureFromImage(image);
+            }
+            else
+            {
+                Console.WriteLine("Error: you suck");
+            }
         }
 
         public override void OnDraw()
