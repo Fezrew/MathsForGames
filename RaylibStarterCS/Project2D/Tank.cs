@@ -11,12 +11,13 @@ namespace Project2D
 {
     class Tank : SceneObject
     {
-        private float curBulletDelay, cantank = 1;
-        public float initBulletDelay = 1;
+        private float curBulletDelay, curTankDelay, cantank = 1;
+        public float initBulletDelay = 50, initTankDelay = 1;
         protected SceneObject turretObject = new SceneObject();
         public SpriteObject tankSprite = new SpriteObject();
         public SpriteObject turretSprite = new SpriteObject();
         Game game;
+        
 
         public SceneObject TurretObject
         {
@@ -26,6 +27,7 @@ namespace Project2D
         public Tank(Game gm)
         {
             this.game = gm;
+            curTankDelay = initTankDelay;
             curBulletDelay = initBulletDelay;
 
             // set up the scene object hierarchy - parent the turret to the base,
@@ -54,25 +56,25 @@ namespace Project2D
         {
             if (IsKeyDown(KeyboardKey.KEY_A))
             {
-                Rotate(-deltaTime * 10);
+                Rotate(-deltaTime * 5);
             }
             if (IsKeyDown(KeyboardKey.KEY_D))
             {
-                Rotate(deltaTime * 10);
+                Rotate(deltaTime * 5);
             }
 
             if (IsKeyDown(KeyboardKey.KEY_W))
             {
                 MathUtility.Vector3 facing = new MathUtility.Vector3(
                 LocalTransform.m1,
-                LocalTransform.m2, 1) * deltaTime * 200;
+                LocalTransform.m2, 1) * deltaTime * 500;
                 Translate(facing.x, facing.y);
             }
             if (IsKeyDown(KeyboardKey.KEY_S))
             {
                 MathUtility.Vector3 facing = new MathUtility.Vector3(
                 LocalTransform.m1,
-                LocalTransform.m2, 1) * deltaTime * -180;
+                LocalTransform.m2, 1) * deltaTime * -250;
                 Translate(facing.x, facing.y);
             }
 
@@ -85,12 +87,19 @@ namespace Project2D
                 turretObject.Rotate(deltaTime * 20);
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_Z))
+            if (IsKeyDown(KeyboardKey.KEY_Z) && curBulletDelay <= 0)
             {
+                Bullet bullet = new Bullet();
+                bullet.CopyTransformToLocal(turretObject.GlobalTransform);
 
+                bullet.Translate(0, 50);
+
+                game.SObject.Add(bullet);
+                curBulletDelay = initBulletDelay;
+                game.bullets++;
             }
 
-            if (IsKeyDown(KeyboardKey.KEY_X) && curBulletDelay <= 0 && cantank > 0)
+            if (IsKeyDown(KeyboardKey.KEY_X) && curTankDelay <= 0 && cantank > 0)
             {
                 Tank tank2 = new Tank(game);
                 game.SObject.Add(tank2);
@@ -101,11 +110,12 @@ namespace Project2D
                     GetScreenWidth() / 2, GetScreenHeight() / 2, 1);
 
                 tank2.UpdateTransform();
-                curBulletDelay = initBulletDelay;
+                curTankDelay = initTankDelay;
                 cantank--;
                 game.tanks++;
             }
             curBulletDelay--;
+            curTankDelay--;
             Draw();
         }
     }

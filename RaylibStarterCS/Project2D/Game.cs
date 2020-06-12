@@ -20,6 +20,7 @@ namespace Project2D
         private float timer = 0, deltaTime = 0.005f;
         private int fps = 1;
         public int tanks = 1;
+        public int bullets = 0;
         private int frames;
 
         Image logo;
@@ -94,6 +95,7 @@ namespace Project2D
 
             DrawText(fps.ToString(), 10, 20, 32, Color.RED);
             DrawText(tanks.ToString(), 200, 20, 32, Color.RED);
+            DrawText(bullets.ToString(), 300, 20, 32, Color.RED);
 
             EndDrawing();
         }

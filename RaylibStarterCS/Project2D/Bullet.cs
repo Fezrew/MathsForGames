@@ -3,17 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Raylib;
+using static Raylib.Raylib;
+using MathUtility;
 
 namespace Project2D
 {
     class Bullet : SceneObject
     {
-        protected SceneObject bulletObject = new SceneObject();
-        public SpriteObject bulletSprite = new SpriteObject();
+        SpriteObject bulletSprite = new SpriteObject();
 
-        public SceneObject BulletObject
+        private float bulletSpeed = 50, bulletAcceleration = 20, maxSpeed = 1000;
+
+        public Bullet()
         {
-            get => bulletObject;
+            bulletSprite.Load("./Images/bulletRed.png");
+            bulletSprite.SetPosition(-bulletSprite.Width / 2.0f, 0);
+            AddChild(bulletSprite);
+        }
+
+        public override void OnUpdate(float deltaTime)
+        {
+            if(maxSpeed > bulletSpeed)
+            {
+                bulletSpeed += bulletAcceleration * deltaTime;
+                if(bulletSpeed > maxSpeed)
+                {
+                    bulletSpeed = maxSpeed;
+                }
+            }
+            
+            Translate(0, bulletSpeed * deltaTime);
         }
     }
 }

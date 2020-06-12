@@ -39,6 +39,12 @@ namespace Project2D
             }
         }
 
+        public void CopyTransformToLocal(Matrix3 t)
+        {
+            localTransform.Set(t);
+            UpdateTransform();
+        }
+
         public void SetPosition(float x, float y)
         {
             localTransform.SetTranslation(x, y);
