@@ -94,6 +94,10 @@ namespace Project2D
                 Bullet bullet = new Bullet();
                 bullet.CopyTransformToLocal(turretObject.GlobalTransform);
 
+                float turretAngle = -(float)Math.Atan2(TurretObject.GlobalTransform.m5, TurretObject.GlobalTransform.m4);
+
+                bullet.Translate(-(float)Math.Cos(turretAngle) * turretSprite.texture.height, (float)Math.Sin(turretAngle) * turretSprite.texture.height);
+
                 game.SObject.Add(bullet);
                 curBulletDelay = initBulletDelay;
                 game.bullets++;
