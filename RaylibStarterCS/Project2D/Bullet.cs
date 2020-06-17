@@ -13,7 +13,7 @@ namespace Project2D
     {
         SpriteObject bulletSprite = new SpriteObject();
 
-        private float bulletSpeed = 50, bulletAcceleration = 20, maxSpeed = 1000;
+        private float bulletSpeed = 50, bulletAcceleration = 166.666667f, maxSpeed = 550;
 
         public Bullet()
         {
@@ -24,16 +24,18 @@ namespace Project2D
 
         public override void OnUpdate(float deltaTime)
         {
-            if(maxSpeed > bulletSpeed)
+            if (maxSpeed > bulletSpeed)
             {
                 bulletSpeed += bulletAcceleration * deltaTime;
-                if(bulletSpeed > maxSpeed)
+                if (bulletSpeed > maxSpeed)
                 {
                     bulletSpeed = maxSpeed;
                 }
             }
-            
-            Translate(0, bulletSpeed * deltaTime);
+
+            float bulletAngle = -(float)Math.Atan2(localTransform.m5, localTransform.m4);
+
+            Translate(-(float)Math.Cos(bulletAngle) * bulletSpeed * deltaTime, (float)Math.Sin(bulletAngle) * bulletSpeed * deltaTime);
         }
     }
 }

@@ -38,13 +38,15 @@ namespace Project2D
 
             tankSprite.Load("./Images/tankBlue_outline.png");
             // sprite is facing the wrong way... fix that here
-            tankSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
+            tankSprite.SetRotate((float)Math.PI / 2);
             // sets an offset for the base, so it rotates around the centre
-            tankSprite.SetPosition(-tankSprite.Width / 2.0f, tankSprite.Height / 2.0f);
+            tankSprite.SetPosition(tankSprite.Width / 2.0f, -tankSprite.Height / 2.0f);
+
             turretSprite.Load("./Images/barrelBlue.png");
-            turretSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
             // set the turret offset from the tank base
-            turretSprite.SetPosition(0, turretSprite.Width / 2.0f);
+            turretObject.SetRotate((float)Math.PI / 2);
+            turretSprite.SetPosition(-turretSprite.Width / 2.0f , -turretSprite.Height);
+
 
             // having an empty object for the tank parent means we can set the
             // position/rotation of the tank without
@@ -92,8 +94,6 @@ namespace Project2D
                 Bullet bullet = new Bullet();
                 bullet.CopyTransformToLocal(turretObject.GlobalTransform);
 
-                bullet.Translate(0, 50);
-
                 game.SObject.Add(bullet);
                 curBulletDelay = initBulletDelay;
                 game.bullets++;
@@ -116,7 +116,6 @@ namespace Project2D
             }
             curBulletDelay--;
             curTankDelay--;
-            Draw();
         }
     }
 }
