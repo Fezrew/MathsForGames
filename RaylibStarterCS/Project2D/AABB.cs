@@ -28,6 +28,7 @@ namespace Project2D
            float.IsInfinity(max.y) &&
            float.IsInfinity(max.z))
                 return true;
+
             return false;
         }
 

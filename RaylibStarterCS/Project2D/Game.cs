@@ -23,8 +23,8 @@ namespace Project2D
         public int bullets = 0;
         private int frames;
 
-        Image logo;
-        Texture2D texture;
+        //Image logo;
+        //Texture2D texture;
 
         public List<SceneObject> SObject = new List<SceneObject>();
         Tank tank;
