@@ -129,6 +129,23 @@ namespace MathUtility
         }
 
         #endregion
+
+        #region Min/Max
+        public static Vector4 Min(Vector4 a, Vector4 b)
+        {
+            return new Vector4(Math.Min(a.x, b.x), Math.Min(a.y, b.y), Math.Min(a.z, b.z), Math.Min(a.w, b.w));
+        }
+        public static Vector4 Max(Vector4 a, Vector4 b)
+        {
+            return new Vector4(Math.Max(a.x, b.x), Math.Max(a.y, b.y), Math.Max(a.z, b.z), Math.Max(a.w, b.w));
+        }
+
+        public static Vector4 Clamp(Vector4 t, Vector4 a, Vector4 b)
+        {
+            return Max(a, Min(b, t));
+        }
+
+        #endregion
     }
 
 }

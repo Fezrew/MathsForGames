@@ -9,6 +9,7 @@ namespace Project2D
 {
     class AABB
     {
+        #region Vector3 Functions
         Vector3 min = new Vector3(
             float.NegativeInfinity,
             float.NegativeInfinity,
@@ -18,6 +19,41 @@ namespace Project2D
             float.PositiveInfinity,
             float.PositiveInfinity,
             float.PositiveInfinity);
+
+        public Vector3 Center()
+        {
+            return (min + max) * 0.5f;
+        }
+
+        public Vector3 Extents()
+        {
+            return new Vector3(Math.Abs(max.x - min.x) * 0.5f,
+            Math.Abs(max.y - min.y) * 0.5f,
+            Math.Abs(max.z - min.z) * 0.5f);
+        }
+
+        public List<Vector3> Corners()
+        {
+            // ignoring z axis for 2D
+            List<Vector3> corners = new List<Vector3>(4);
+            corners[0] = min;
+            corners[1] = new Vector3(min.x, max.y, min.z);
+            corners[2] = max;
+            corners[3] = new Vector3(max.x, min.y, min.z);
+            return corners;
+        }
+        #endregion
+
+        public AABB()
+        {
+
+        }
+
+        public AABB(Vector3 min, Vector3 max)
+        {
+            this.min = min;
+            this.max = max;
+        }
 
         public bool IsEmpty()
         {
@@ -147,6 +183,43 @@ namespace Project2D
                 min.z += m.m9 * box.max.z;
                 max.z += m.m9 * box.min.z;
             }
+        }
+
+        public void Fit(List<Vector3> points)
+        {
+            // invalidate the extents
+            min = new Vector3(float.PositiveInfinity,
+           float.PositiveInfinity,
+           float.PositiveInfinity);
+            max = new Vector3(float.NegativeInfinity,
+           float.NegativeInfinity,
+           float.NegativeInfinity);
+
+            // find min and max of the points
+            foreach (Vector3 p in points)
+            {
+                min = Vector3.Min(min, p);
+                max = Vector3.Max(max, p);
+            }
+        }
+
+        public bool Overlaps(Vector3 p)
+        {
+            // test for not overlapped as it exits faster
+            return !(p.x < min.x || p.y < min.y ||
+            p.x > max.x || p.y > max.y);
+        }
+
+        public bool Overlaps(AABB other)
+        {
+            // test for not overlapped as it exits faster
+            return !(max.x < other.min.x || max.y < other.min.y ||
+            min.x > other.max.x || min.y > other.max.y);
+        }
+
+        public Vector3 ClosestPoint(Vector3 p)
+        {
+            return Vector3.Clamp(p, min, max);
         }
     }
 }
