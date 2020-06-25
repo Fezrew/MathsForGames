@@ -212,7 +212,7 @@ namespace Project2D
 
         public bool Overlaps(AABB other)
         {
-            // test for not overlapped as it exits faster
+            // test for not overlapped as it exits faster                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
             return !(max.x < other.min.x || max.y < other.min.y ||
             min.x > other.max.x || min.y > other.max.y);
         }
