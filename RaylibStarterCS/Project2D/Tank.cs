@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Raylib;
-using static Raylib.Raylib;
+using Raylib_cs;
+using static Raylib_cs.Raylib;
 using MathUtility;
 
 namespace Project2D
@@ -16,6 +16,8 @@ namespace Project2D
         protected SceneObject turretObject = new SceneObject();
         public SpriteObject tankSprite = new SpriteObject();
         public SpriteObject turretSprite = new SpriteObject();
+        static Texture2D tankTexture = LoadTexture("./Images/tankBlue_outline.png");
+        static Texture2D turretTexture = LoadTexture("./Images/barrelBlue.png");
         Game game;
         
 
@@ -36,13 +38,13 @@ namespace Project2D
             AddChild(tankSprite);
             AddChild(turretObject);
 
-            tankSprite.Load("./Images/tankBlue_outline.png");
+            tankSprite.SetTexture(tankTexture);
             // sprite is facing the wrong way... fix that here
             tankSprite.SetRotate((float)Math.PI / 2);
             // sets an offset for the base, so it rotates around the centre
             tankSprite.SetPosition(tankSprite.Width / 2.0f, -tankSprite.Height / 2.0f);
 
-            turretSprite.Load("./Images/barrelBlue.png");
+            turretSprite.SetTexture(turretTexture);
             // set the turret offset from the tank base
             turretObject.SetRotate((float)Math.PI / 2);
             turretSprite.SetPosition(-turretSprite.Width / 2.0f , -turretSprite.Height);
@@ -56,6 +58,7 @@ namespace Project2D
 
         public override void OnUpdate(float deltaTime)
         {
+            #region Inputs
             if (IsKeyDown(KeyboardKey.KEY_A))
             {
                 Rotate(-deltaTime * 5);
@@ -111,15 +114,23 @@ namespace Project2D
                 tank2.GlobalTransform.Set(
                     TurretObject.GlobalTransform.m1, TurretObject.GlobalTransform.m2, 0,
                     TurretObject.GlobalTransform.m4, TurretObject.GlobalTransform.m5, 0,
-                    GetScreenWidth() / 2, GetScreenHeight() / 2, 1);
+                    GetScreenHeight() / 2, GetScreenHeight() / 2, 1);
 
                 tank2.UpdateTransform();
                 curTankDelay = initTankDelay;
                 cantank--;
                 game.tanks++;
             }
+            #endregion
+
             curBulletDelay--;
             curTankDelay--;
+
+            if (globalTransform.m7 < 0 || globalTransform.m7 > GetScreenWidth() ||
+                    globalTransform.m8 < 0 || globalTransform.m8 > GetScreenHeight())
+            {
+                Rotate((float)Math.PI);
+            }
         }
     }
 }

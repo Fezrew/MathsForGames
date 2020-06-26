@@ -6,8 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Raylib;
-using static Raylib.Raylib;
+using Raylib_cs;
+using static Raylib_cs.Raylib;
 using MathUtility;
 
 namespace Project2D
@@ -86,7 +86,7 @@ namespace Project2D
         public void Draw()
         {
             BeginDrawing();
-            ClearBackground(Color.WHITE);
+            ClearBackground(new Color(255, 255, 255, 0));
 
             foreach (SceneObject so in SObject)
             {

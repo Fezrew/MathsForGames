@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Raylib;
-using static Raylib.Raylib;
+using Raylib_cs;
+using static Raylib_cs.Raylib;
 using MathUtility;
 
 namespace Project2D
@@ -12,12 +12,14 @@ namespace Project2D
     class Bullet : SceneObject
     {
         SpriteObject bulletSprite = new SpriteObject();
+        static Texture2D bulletTexture = LoadTextureFromImage(LoadImage("./Images/bulletRed.png"));
+
 
         private float bulletSpeed = 50, bulletAcceleration = 166.666667f, maxSpeed = 550;
 
         public Bullet()
         {
-            bulletSprite.Load("./Images/bulletRed.png");
+            bulletSprite.SetTexture(bulletTexture);
             bulletSprite.SetPosition(-bulletSprite.Width / 2.0f, 0);
             AddChild(bulletSprite);
         }
@@ -36,6 +38,12 @@ namespace Project2D
             float bulletAngle = -(float)Math.Atan2(localTransform.m5, localTransform.m4);
 
             Translate(-(float)Math.Cos(bulletAngle) * bulletSpeed * deltaTime, (float)Math.Sin(bulletAngle) * bulletSpeed * deltaTime);
+
+            if (globalTransform.m7 < 0 || globalTransform.m7 > GetScreenWidth() ||
+                    globalTransform.m8 < 0 || globalTransform.m8 > GetScreenHeight())
+            {
+                Rotate((float)Math.PI);
+            }
         }
     }
 }

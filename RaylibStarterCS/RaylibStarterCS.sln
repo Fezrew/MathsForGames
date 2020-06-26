@@ -13,26 +13,39 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTes
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Raylib\Bindings\Raylib.projitems*{c24ac51d-cf9d-439a-8303-99706b312d78}*SharedItemsImports = 4
 		Raylib\Bindings\Raylib.projitems*{f660ff67-d70e-4ae0-9080-d922243e9b6e}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C24AC51D-CF9D-439A-8303-99706B312D78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C24AC51D-CF9D-439A-8303-99706B312D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C24AC51D-CF9D-439A-8303-99706B312D78}.Debug|x64.ActiveCfg = Debug|x64
+		{C24AC51D-CF9D-439A-8303-99706B312D78}.Debug|x64.Build.0 = Debug|x64
 		{C24AC51D-CF9D-439A-8303-99706B312D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C24AC51D-CF9D-439A-8303-99706B312D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C24AC51D-CF9D-439A-8303-99706B312D78}.Release|x64.ActiveCfg = Release|x64
+		{C24AC51D-CF9D-439A-8303-99706B312D78}.Release|x64.Build.0 = Release|x64
 		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Debug|x64.Build.0 = Debug|Any CPU
 		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Release|x64.ActiveCfg = Release|Any CPU
+		{52C269EA-1DE3-4BE3-B122-226F37C0A10C}.Release|x64.Build.0 = Release|Any CPU
 		{905324D8-5136-474F-90AC-740AA22A6E54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{905324D8-5136-474F-90AC-740AA22A6E54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{905324D8-5136-474F-90AC-740AA22A6E54}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{905324D8-5136-474F-90AC-740AA22A6E54}.Debug|x64.Build.0 = Debug|Any CPU
 		{905324D8-5136-474F-90AC-740AA22A6E54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{905324D8-5136-474F-90AC-740AA22A6E54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{905324D8-5136-474F-90AC-740AA22A6E54}.Release|x64.ActiveCfg = Release|Any CPU
+		{905324D8-5136-474F-90AC-740AA22A6E54}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
