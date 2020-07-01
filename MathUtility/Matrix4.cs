@@ -116,8 +116,8 @@ namespace MathUtility
         public void SetRotateX(float radians)
         {
             Set(1, 0, 0, 0,
-                0, (float)Math.Cos(radians), (float)-Math.Sin(radians), 0,
-                0, (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+                0, (float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+                0, (float)-Math.Sin(radians), (float)Math.Cos(radians), 0,
                 0, 0, 0, 1
                 );
         }

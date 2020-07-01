@@ -20,7 +20,8 @@ namespace Project2D
         public Bullet()
         {
             bulletSprite.SetTexture(bulletTexture);
-            bulletSprite.SetPosition(-bulletSprite.Width / 2.0f, 0);
+            bulletSprite.SetPosition(bulletSprite.Width / 2.0f, bulletSprite.Height);
+            bulletSprite.Rotate((float)Math.PI);
             AddChild(bulletSprite);
         }
 
@@ -35,9 +36,7 @@ namespace Project2D
                 }
             }
 
-            float bulletAngle = -(float)Math.Atan2(localTransform.m5, localTransform.m4);
-
-            Translate(-(float)Math.Cos(bulletAngle) * bulletSpeed * deltaTime, (float)Math.Sin(bulletAngle) * bulletSpeed * deltaTime);
+            Translate(0, bulletSpeed * deltaTime);
 
             if (globalTransform.m7 < 0 || globalTransform.m7 > GetScreenWidth() ||
                     globalTransform.m8 < 0 || globalTransform.m8 > GetScreenHeight())

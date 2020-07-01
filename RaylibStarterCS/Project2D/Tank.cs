@@ -39,15 +39,12 @@ namespace Project2D
             AddChild(turretObject);
 
             tankSprite.SetTexture(tankTexture);
-            // sprite is facing the wrong way... fix that here
-            tankSprite.SetRotate((float)Math.PI / 2);
             // sets an offset for the base, so it rotates around the centre
-            tankSprite.SetPosition(tankSprite.Width / 2.0f, -tankSprite.Height / 2.0f);
+            tankSprite.SetPosition(-tankSprite.Width / 2.0f, -tankSprite.Height / 2.0f);
 
             turretSprite.SetTexture(turretTexture);
             // set the turret offset from the tank base
-            turretObject.SetRotate((float)Math.PI / 2);
-            turretSprite.SetPosition(-turretSprite.Width / 2.0f , -turretSprite.Height);
+            turretSprite.SetPosition(-turretSprite.Width / 2.0f , 0);
 
 
             // having an empty object for the tank parent means we can set the
@@ -70,17 +67,13 @@ namespace Project2D
 
             if (IsKeyDown(KeyboardKey.KEY_W))
             {
-                MathUtility.Vector3 facing = new MathUtility.Vector3(
-                LocalTransform.m1,
-                LocalTransform.m2, 1) * deltaTime * 500;
-                Translate(facing.x, facing.y);
+                Vector3 facing = new MathUtility.Vector3(LocalTransform.m1, LocalTransform.m2, 1) * deltaTime * 500;
+                Translate(0, 500 * deltaTime);
             }
             if (IsKeyDown(KeyboardKey.KEY_S))
             {
-                MathUtility.Vector3 facing = new MathUtility.Vector3(
-                LocalTransform.m1,
-                LocalTransform.m2, 1) * deltaTime * -250;
-                Translate(facing.x, facing.y);
+                MathUtility.Vector3 facing = new MathUtility.Vector3(LocalTransform.m1, LocalTransform.m2, 1) * deltaTime * -250;
+                Translate(0, 500 * -deltaTime);
             }
 
             if (IsKeyDown(KeyboardKey.KEY_Q))
@@ -99,7 +92,7 @@ namespace Project2D
 
                 float turretAngle = -(float)Math.Atan2(TurretObject.GlobalTransform.m5, TurretObject.GlobalTransform.m4);
 
-                bullet.Translate(-(float)Math.Cos(turretAngle) * turretSprite.texture.height, (float)Math.Sin(turretAngle) * turretSprite.texture.height);
+                bullet.Translate(0, turretSprite.texture.height);
 
                 game.SObject.Add(bullet);
                 curBulletDelay = initBulletDelay;
