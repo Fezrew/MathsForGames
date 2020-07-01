@@ -553,22 +553,19 @@ namespace UnitTestProject1
         }
 
         [TestMethod]
-        public void ColourChange()
+        public void ColourEquals()
         {
             Colour lastColour = new Colour();
             Colour curColour = new Colour();
+            Colour redColour = new Colour(0x5e000000);
             //bool isSame = false;
 
-            curColour.SetRed(0x12);
-            Assert.IsTrue(lastColour != curColour);
+            curColour.SetRed(0x5e); // 94 in decimal
+            Assert.IsTrue(curColour == redColour);
             lastColour.SetRed(0x12);
 
             curColour.SetGreen(0x34);
-            Assert.IsTrue(lastColour != curColour);
-            lastColour.SetGreen(0x34);
-
-            curColour.SetBlue(0x56);
-            Assert.IsTrue(lastColour != curColour);
+            Assert.IsTrue(curColour != redColour);
         }
     }
 }
