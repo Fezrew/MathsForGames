@@ -26,7 +26,7 @@ namespace Project2D
             Game game = new Game();
 
             SetConfigFlags(ConfigFlag.FLAG_WINDOW_UNDECORATED);
-            InitWindow(1280, 720, "👌👌👌👌👌👌👌👌👌👌👌👌👌👌👌");
+            InitWindow(1280, 720, "I regret nothing");
 
             //Workaround for raylib forcing fullscreen upon us trying to make the window 1:1
             System.Drawing.Rectangle desktopRectangle;
