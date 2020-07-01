@@ -14,6 +14,10 @@ namespace MathUtility
         {
 
         }
+        public Colour(UInt32 col)
+        {
+            colour = col;
+        }
 
         public Colour(byte r, byte g, byte b, byte a)
         {
@@ -21,6 +25,17 @@ namespace MathUtility
             SetGreen(g);
             SetBlue(b);
             SetAlpha(a);
+        }
+
+
+        public static bool operator ==(Colour lhs, Colour rhs)
+        {
+            return lhs.colour == rhs.colour;
+        }
+
+        public static bool operator !=(Colour lhs, Colour rhs)
+        {
+            return lhs.colour != rhs.colour;
         }
 
         public byte GetRed()
