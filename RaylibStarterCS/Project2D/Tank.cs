@@ -130,6 +130,26 @@ namespace Project2D
                     globalTransform.m8 < 0 || globalTransform.m8 > GetScreenHeight())
             {
                 Rotate((float)Math.PI);
+
+                if (globalTransform.m7 < 0)
+                {
+                    globalTransform.m7 = 0;
+                }
+
+                if (globalTransform.m8 < 0)
+                {
+                    globalTransform.m8 = 0;
+                }
+
+                if (globalTransform.m7 > GetScreenWidth())
+                {
+                    globalTransform.m7 = GetScreenWidth();
+                }
+
+                if (globalTransform.m8 > GetScreenHeight())
+                {
+                    globalTransform.m8 = GetScreenHeight();
+                }
             }
         }
     }
