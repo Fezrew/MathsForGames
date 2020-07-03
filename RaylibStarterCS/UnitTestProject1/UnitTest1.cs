@@ -567,5 +567,25 @@ namespace UnitTestProject1
             curColour.SetGreen(0x34);
             Assert.IsTrue(curColour != redColour);
         }
+
+        [TestMethod]
+        public void BitShifted()
+        {
+            Colour c = new Colour();
+            c.SetGreen(0x34);
+
+            c.bitShiftLeft(8);
+            Assert.IsTrue(c.colour == 0x34000000);
+
+            c.bitShiftLeft(8);
+            Assert.IsTrue(c.colour == 0x00000000);
+            
+            c.SetGreen(0x34);
+            c.bitShiftRight(8);
+            Assert.IsTrue(c.colour == 0x00003400);
+
+            c.bitShiftRight(16);
+            Assert.IsTrue(c.colour == 0x00000000);
+        }
     }
 }
