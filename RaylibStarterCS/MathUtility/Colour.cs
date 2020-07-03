@@ -38,6 +38,7 @@ namespace MathUtility
             return lhs.colour != rhs.colour;
         }
 
+        #region GetSetColour
         public byte GetRed()
         {
             return (byte)((colour & 0xff000000) >> 24);
@@ -78,6 +79,17 @@ namespace MathUtility
         {
             colour = colour & 0xffffff00;
             colour |= (UInt32)a;
+        }
+        #endregion
+
+        public void bitShiftRight(int shiftAmount)
+        {
+            colour = colour >> shiftAmount;
+        }
+
+        public void bitShiftLeft(int shiftAmount)
+        {
+            colour = colour << shiftAmount;
         }
     }
 }

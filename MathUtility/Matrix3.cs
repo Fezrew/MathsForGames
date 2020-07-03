@@ -176,14 +176,9 @@ namespace MathUtility
 
         public void Translate(float x, float y)
         {
-            // apply vector offset
-            //m7 += x; m8 += y;;
-
             Matrix3 m = new Matrix3();
             m.SetTranslation(x, y);
             Set(this * m);
-
-
         }
         #endregion
 
